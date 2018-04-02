@@ -4,7 +4,7 @@ namespace projet4\core;
 class Router {
 
     private static $routes = [
-        'home' => [
+        'accueil' => [
             'path' => '/',
             'run' => 'PagesController@home'
         ],
@@ -12,16 +12,16 @@ class Router {
             'path' => '/contact',
             'run' => 'PagesController@contact'
         ],
-        'allPosts' => [
-            'path' => '/allPosts',
+        'chapitres' => [
+            'path' => '/chapitres',
             'run' => 'PagesController@allPosts'
         ],
-        'singlePost' => [
-            'path' => '/singlePost',
+        'chapitre' => [
+            'path' => '/chapitre',
             'run' => 'PagesController@singlePost'
         ],
-        'connect' => [
-            'path' => '/connect',
+        'connexion' => [
+            'path' => '/connexion',
             'run' => 'AdminController@connect'
         ],
         'admin' => [
@@ -29,16 +29,16 @@ class Router {
             'run' => 'AdminController@admin'
         ],
         'newPost' => [
-            'path' => '/newPost',
+            'path' => '/admin/newPost',
             'run' => 'AdminController@newPost'
         ],
         'reportedComments' => [
-            'path' => '/reportedComments',
+            'path' => '/admin/reportedComments',
             'run' => 'AdminController@reportedComments'
         ]
     ];
 
-    public function getPath() {
+    private function getPath() {
         $url = $_SERVER['REQUEST_URI'];
         $url = str_replace(BASE_URL, '', $url);
         $url = strtok($url, '?');
