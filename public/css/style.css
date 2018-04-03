@@ -104,7 +104,7 @@ footer {
 */
 .main-allposts {
     text-align: center;
-    width: 50vw;
+    width: 70vw;
 }
 .main-allposts h2 {
     color: #f77669;
@@ -161,9 +161,32 @@ footer {
 **** main-singlepost
 *
 */
-
-
-
+.main-singlepost {
+    padding: 0 5rem;
+}
+.main-singlepost h2 {
+    text-align: center;
+}
+.singlepost-post div {
+    text-align: justify;
+}
+.singlepost-comments {
+    display: flex;
+    background-color: #253b44;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+.comment-form, .comments-container {
+    margin: 0 0.5rem;
+}
+.comment-form {
+    border-right: 2px solid #4a6a77;
+    padding-right: 0.5rem;
+}
+.comments-container div p:first-child {
+    border-top: 1px solid #4a6a77;
+    padding-top: 0.5rem;
+}
 /*
 *
 **** main-contact
@@ -178,12 +201,15 @@ footer {
 .main-contact form fieldset {
     margin: 2rem 0;
 }
-.main-contact form fieldset input {
+.main-contact form fieldset:first-child input {
     margin: 0.5rem 0.5rem 0 0.5rem;
-    background-color: #F6F6F6;
+    background-color: beige;
+}
+.main-contact form fieldset:last-child input {
+    margin: 0.5rem 0.5rem 0 0.5rem;
 }
 .main-contact textarea {
-    background-color: #F6F6F6;
+    background-color: beige;
 }
 /*
 *

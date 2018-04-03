@@ -1,16 +1,13 @@
 <?php
 
 require_once '../src/model/PostsManager.php';
+require_once '../src/model/CommentsManager.php';
 use projet4\core\Controller;
 
 class PagesController extends Controller{
 
     public function home() {
         $this->render('home');
-    }
-
-    public function contact() {
-        $this->render('contact');
     }
 
     public function allPosts() {
@@ -20,7 +17,37 @@ class PagesController extends Controller{
     }
 
     public function singlePost() {
-        $this->render('singlePost');
+        $postsManager = new PostsManager();
+        $commentsManager = new CommentsManager();
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $singlePost = $postsManager->getOnePost(htmlspecialchars($_GET['id']));
+            $commentsByPost = $commentsManager->getCommentsByPost(htmlspecialchars($_GET['id']));
+            $this->render('singlePost', compact('singlePost', 'commentsByPost'));
+        } else {
+            throw new Exception('Ce chapitre n\'existe pas.');
+        }
+    }
+
+    public function newComment() {
+        $commentsManager = new CommentsManager();
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            if (!empty($_POST['comment-author']) && !empty($_POST['comment-content'])) {
+                $newComment = $commentsManager->addComment(
+                    htmlspecialchars($_GET['id']),
+                    htmlspecialchars(ucfirst($_POST['comment-author'])),
+                    htmlspecialchars($_POST['comment-content'])
+                );
+                header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['id']);
+            } else {
+                throw new Exception('Vous n\'avez pas rempli tous les champs.');
+            }
+        } else {
+            throw new Exception('Ce chapitre n\'existe pas.');
+        }
+    }
+
+    public function contact() {
+        $this->render('contact');
     }
 
 }

@@ -12,4 +12,12 @@ class PostsManager extends Manager {
         return $req;
     }
 
+    public function getOnePost($post_id) {
+        $req = $this->prepare('SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin\') AS date_fr 
+                                          FROM posts
+                                          WHERE id = ?
+                                          ', array($post_id), true, true);
+        return $req;
+    }
+
 }

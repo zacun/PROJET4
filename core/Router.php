@@ -24,6 +24,10 @@ class Router {
             'path' => '/connexion',
             'run' => 'AdminController@connect'
         ],
+        'addComment' => [
+            'path' => '/addComment',
+            'run' => 'PagesController@newComment'
+        ],
         'admin' => [
             'path' => '/admin',
             'run' => 'AdminController@admin'

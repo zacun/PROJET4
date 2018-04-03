@@ -26,15 +26,25 @@ class Manager {
     /**
      * @param $SqlStatement
      * @param $attributes
-     * @param $class_name
-     * @param bool $fetchOnlyOne
-     * @return array|mixed
+     * @param bool $fetch
+     * @param bool $needOnlyOne
+     * @return array|bool|mixed
+     * Makes a prepared request depending on whether you want to fetch or not.
      */
-    public function prepare($SqlStatement, $attributes) {
+    public function prepare($SqlStatement, $attributes, $fetch = true, $needOnlyOne = false) {
         $req = $this->dbConnect()->prepare($SqlStatement);
-        $req->execute($attributes);
-        $data = $req->fetch();
-        return $data;
+        if ($fetch) {
+            $req->execute($attributes);
+            if ($needOnlyOne) {
+                $data = $req->fetch();
+            } else {
+                $data = $req->fetchAll();
+            }
+            return $data;
+        } else {
+            $newContent = $req->execute($attributes);
+            return $newContent;
+        }
     }
 
 }
