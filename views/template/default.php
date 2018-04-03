@@ -2,7 +2,7 @@
 use projet4\core\Router;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr_FR">
 <head>
     <meta charset="utf-8" />
     <link href="../public/css/style.css" rel="stylesheet" />
@@ -19,7 +19,7 @@ use projet4\core\Router;
             <p>Rêveur, voyageur et créatif depuis mon plus jeune âge, il était évident que je devienne écrivain afin de conter mes histoires et voyages.</p>
             <p>
                 Retrouvez sur ce site, les chapitres de mon dernier livre :<br />
-                <span class="book-name">&laquo; Billet simple pour l'Alaska &raquo;,</span><br />
+                <span class="book-name"><i>&laquo; Billet simple pour l'Alaska</i> &raquo;,</span><br />
                 qui y seront ajoutés au fur et à mesure.
             </p>
         </div>

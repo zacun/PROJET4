@@ -7,7 +7,9 @@ use projet4\core\Controller;
 class PagesController extends Controller{
 
     public function home() {
-        $this->render('home');
+        $postManager = new PostsManager();
+        $lastAddedPosts = $postManager->lastAddedPosts();
+        $this->render('home', compact('lastAddedPosts'));
     }
 
     public function allPosts() {
@@ -30,14 +32,14 @@ class PagesController extends Controller{
 
     public function newComment() {
         $commentsManager = new CommentsManager();
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
+        if (isset($_GET['postid']) && $_GET['postid'] > 0) {
             if (!empty($_POST['comment-author']) && !empty($_POST['comment-content'])) {
                 $newComment = $commentsManager->addComment(
-                    htmlspecialchars($_GET['id']),
+                    htmlspecialchars($_GET['postid']),
                     htmlspecialchars(ucfirst($_POST['comment-author'])),
                     htmlspecialchars($_POST['comment-content'])
                 );
-                header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['id']);
+                header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
             } else {
                 throw new Exception('Vous n\'avez pas rempli tous les champs.');
             }
@@ -48,6 +50,10 @@ class PagesController extends Controller{
 
     public function contact() {
         $this->render('contact');
+    }
+
+    public static function getExcerpt($excerpt) {
+        return substr($excerpt, 0, 150) . '...';
     }
 
 }

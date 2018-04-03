@@ -8,7 +8,7 @@ use projet4\core\Router;
     </section>
     <section class="singlepost-comments">
         <div class="comment-form">
-            <form action="<?= Router::getUrl('addComment'); ?>?id=<?= $_GET['id'] ?>" method="post">
+            <form action="<?= Router::getUrl('addComment'); ?>?postid=<?= $_GET['id'] ?>" method="post">
                 <h3>Ajouter un commentaire</h3>
                 <p>
                     <label for="comment-author">Votre nom :</label><br>

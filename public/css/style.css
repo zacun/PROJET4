@@ -94,8 +94,37 @@ footer {
 **** main-home
 *
 */
-
-
+.main-home h2 {
+    color: #f77669;
+    text-align: center;
+}
+.welcome-message {
+    text-align: center;
+}
+.post-excerpt {
+    display: flex;
+    max-width: 50rem;
+    align-items: center;
+    background-color: #253b44;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+.excerpt-title {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+.excerpt-content {
+    flex: 1;
+    margin: 0 1rem;
+    padding: 0 0.5rem;
+    border-right: 2px solid #4a6a77;
+    border-left: 2px solid #4a6a77;
+    text-align: justify;
+}
+.excerpt-link-to-post a {
+    text-decoration: none;
+    color: #EEF0F3;
+}
 
 /*
 *
