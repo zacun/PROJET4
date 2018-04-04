@@ -52,6 +52,10 @@ class PagesController extends Controller{
         $this->render('contact');
     }
 
+    public function connect() {
+        $this->render('connect');
+    }
+
     public static function getExcerpt($excerpt) {
         return substr($excerpt, 0, 150) . '...';
     }

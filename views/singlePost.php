@@ -28,7 +28,7 @@ use projet4\core\Router;
             <p>Les commentaires sont classés du plus récent au plus ancien.</p>
             <?php foreach ($commentsByPost as $comment): ?>
                 <div>
-                    <p><strong><?= $comment['author']; ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
+                    <p><strong <?= $commentAdmin = $comment['user_id'] != null ? 'class="comment-admin"' : '' ?>><?= $comment['author']; ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
                     <p><?= $comment['content']; ?></p>
                 </div>
             <?php endforeach; ?>

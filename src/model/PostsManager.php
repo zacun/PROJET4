@@ -19,7 +19,7 @@ class PostsManager extends Manager {
                         FROM posts
                         WHERE id = ?',
                         array($post_id), true, true
-                        );
+        );
         return $req;
     }
 
@@ -30,6 +30,33 @@ class PostsManager extends Manager {
                         ORDER BY post_date DESC
                         LIMIT 0, 2
                         ');
+        return $req;
+    }
+
+    public function addNewPost($title, $content) {
+        $req = $this->prepare(
+            'INSERT INTO posts(title, content, post_date) 
+                        VALUES (?, ?, NOW())',
+                        array($title, $content), false
+        );
+        return $req;
+    }
+
+    public function updatePost($title, $content, $post_id) {
+        $req = $this->prepare(
+            'UPDATE posts 
+                        SET title = ?, content = ? 
+                        WHERE id = ?',
+                        array($title, $content, $post_id), false
+        );
+        return $req;
+    }
+
+    public function deletePost($post_id) {
+        $req = $this->prepare(
+            'DELETE FROM posts WHERE id = ?',
+            array($post_id), false
+        );
         return $req;
     }
 

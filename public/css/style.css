@@ -191,7 +191,8 @@ footer {
 *
 */
 .main-singlepost {
-    padding: 0 5rem;
+    padding: 0 2rem;
+    width: 70vw;
 }
 .main-singlepost h2 {
     text-align: center;
@@ -215,6 +216,9 @@ footer {
 .comments-container div p:first-child {
     border-top: 1px solid #4a6a77;
     padding-top: 0.5rem;
+}
+.comment-admin {
+    color: #f77669;
 }
 /*
 *
@@ -254,4 +258,34 @@ footer {
 .main-connect form {
     padding: 1rem;
     border: 2px solid gray;
+}
+
+/***************/
+/* Admin pages */
+/***************/
+
+.main-admin {
+    text-align: center;
+}
+.main-admin nav, .main-admin section {
+    background-color: #253b44;
+    padding: 1rem;
+}
+.main-admin table {
+    margin: auto;
+    width: 100%;
+}
+.main-admin table td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.main-admin table td a {
+    text-decoration: none;
+    color: inherit;
+}
+.main-newpost, .main-editpost {
+    width: 50vw;
+}
+.main-newpost form, .main-editpost form {
+    text-align: center;
 }
