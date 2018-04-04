@@ -48,16 +48,22 @@ class PagesController extends Controller{
         }
     }
 
+    public function reportComment() {
+        $commentsManager = new CommentsManager();
+        if (isset($_GET['commentid']) && $_GET['commentid'] > 0) {
+            $reportComment = $commentsManager->reportComment(htmlspecialchars($_GET['commentid']));
+            header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
+        } else {
+            throw new Exception('Le commentaire n\'existe pas');
+        }
+    }
+
     public function contact() {
         $this->render('contact');
     }
 
     public function connect() {
         $this->render('connect');
-    }
-
-    public static function getExcerpt($excerpt) {
-        return substr($excerpt, 0, 150) . '...';
     }
 
 }

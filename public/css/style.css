@@ -78,7 +78,6 @@ nav a:hover {
     color: #f77669;
 }
 main {
-    margin: 0 auto;
     flex: 1;
 }
 footer {
@@ -94,6 +93,10 @@ footer {
 **** main-home
 *
 */
+.main-home {
+    margin: auto;
+    width: 50rem;
+}
 .main-home h2 {
     color: #f77669;
     text-align: center;
@@ -133,7 +136,8 @@ footer {
 */
 .main-allposts {
     text-align: center;
-    width: 70vw;
+    max-width: 50rem;
+    margin: auto;
 }
 .main-allposts h2 {
     color: #f77669;
@@ -149,7 +153,7 @@ footer {
     background-color: #253b44;
     margin: 1rem;
     padding: 0.5rem;
-    width: 20rem;
+    max-width: 20rem;
     min-height: 12rem;
     display: flex;
     flex-direction: column;
@@ -191,14 +195,18 @@ footer {
 *
 */
 .main-singlepost {
-    padding: 0 2rem;
-    width: 70vw;
+    margin: auto;
+    max-width: 70rem;
+    padding: 1rem;
 }
 .main-singlepost h2 {
     text-align: center;
 }
 .singlepost-post div {
     text-align: justify;
+}
+.singlepost-post-date {
+    text-align: right;
 }
 .singlepost-comments {
     display: flex;
@@ -220,6 +228,13 @@ footer {
 .comment-admin {
     color: #f77669;
 }
+.report-comment {
+    text-align: right;
+}
+.report-comment a {
+    text-decoration: none;
+    color: inherit;
+}
 /*
 *
 **** main-contact
@@ -227,6 +242,8 @@ footer {
 */
 .main-contact {
     text-align: center;
+    margin: auto;
+    width: 50rem;
 }
 .main-contact h2 {
     color: #f77669;
@@ -236,13 +253,9 @@ footer {
 }
 .main-contact form fieldset:first-child input {
     margin: 0.5rem 0.5rem 0 0.5rem;
-    background-color: beige;
 }
 .main-contact form fieldset:last-child input {
     margin: 0.5rem 0.5rem 0 0.5rem;
-}
-.main-contact textarea {
-    background-color: beige;
 }
 /*
 *
@@ -251,6 +264,8 @@ footer {
 */
 .main-connect {
     text-align: center;
+    margin: auto;
+    width: 30rem;
 }
 .main-connect h2 {
     color: #f77669;
@@ -264,27 +279,33 @@ footer {
 /* Admin pages */
 /***************/
 
-.main-admin {
+.main-admin, .main-reported, .main-allcomments {
     text-align: center;
+    margin: auto;
+    width: 50rem;
 }
-.main-admin nav, .main-admin section {
+.main-admin nav {
+    font-size: 1.25rem;
+}
+.main-admin nav, .main-admin section, .main-reported section, .main-allcomments section {
     background-color: #253b44;
-    padding: 1rem;
+    padding: 0.5rem;
 }
-.main-admin table {
+.main-admin table, .main-reported table, .main-allcomments table {
     margin: auto;
     width: 100%;
 }
-.main-admin table td {
+.main-admin table td, .main-reported table td, .main-allcomments table td {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-.main-admin table td a {
+.main-admin table td a, .main-reported table td a, .main-allcomments table td a {
     text-decoration: none;
     color: inherit;
 }
 .main-newpost, .main-editpost {
-    width: 50vw;
+    width: 70vw;
+    margin: auto;
 }
 .main-newpost form, .main-editpost form {
     text-align: center;

@@ -73,6 +73,26 @@ class Router {
         'reportedComments' => [
             'path' => '/admin/reportedComments',
             'run' => 'AdminController@reportedComments'
+        ],
+        // action : report a comment to admin
+        'reportComment' => [
+            'path' => '/reportComment',
+            'run' => 'PagesController@reportComment'
+        ],
+        // action : delete a comment
+        'deleteComment' => [
+            'path' => '/admin/deleteComment',
+            'run' => 'AdminController@deleteComment'
+        ],
+        // action : remove reported tag of a comment
+        'removeReportedTag' => [
+            'path' => '/admin/removeReportedTag',
+            'run' => 'AdminController@removeReportedTag'
+        ],
+        // page : shows all comments
+        'allComments' => [
+            'path' => '/admin/allComments',
+            'run' => 'AdminController@allComments'
         ]
     ];
 

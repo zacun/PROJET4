@@ -30,4 +30,13 @@ class Controller {
         $title = $this->title . ' | ' . ucfirst(str_replace('admin/', '', $view));
         return $title;
     }
+
+    public static function getExcerpt(string $excerpt, int $length, bool $dot = true) {
+        if ($dot == false) {
+            return substr($excerpt, 0, $length);
+        } else {
+            return substr($excerpt, 0, $length) . '...';
+        }
+    }
+
 }

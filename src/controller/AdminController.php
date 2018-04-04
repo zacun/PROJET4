@@ -4,6 +4,7 @@ require_once '../src/model/PostsManager.php';
 require_once '../src/model/CommentsManager.php';
 
 use projet4\core\Controller;
+use projet4\core\Router;
 
 class AdminController extends Controller {
 
@@ -20,7 +21,7 @@ class AdminController extends Controller {
         $postsManager = new PostsManager();
         if (!empty($_POST['newPostName']) && !empty($_POST['newPostContent'])) {
             $newPost = $postsManager->addNewPost($_POST['newPostName'], $_POST['newPostContent']);
-            header('Location: ' . \projet4\core\Router::getUrl('admin'));
+            header('Location: ' . Router::getUrl('admin'));
         } else {
             throw new Exception('Impossible d\'ajouter le chapitre : informations manquantes');
         }
@@ -54,7 +55,7 @@ class AdminController extends Controller {
         $postsManager = new PostsManager();
         if (isset($_GET['postid']) && $_GET['postid'] > 0) {
             $postToDelete = $postsManager->deletePost(htmlspecialchars($_GET['postid']));
-            header('Location: ' . \projet4\core\Router::getUrl('admin'));
+            header('Location: ' . Router::getUrl('admin'));
         } else {
             throw new Exception('Le chapitre n\'existe pas.');
         }
@@ -64,7 +65,15 @@ class AdminController extends Controller {
      * Go to reported comments
      */
     public function reportedComments() {
-        $this->renderAdmin('reportedComments');
+        $commentsManager = new CommentsManager();
+        $getReportedComments = $commentsManager->getReportedComments();
+        $this->renderAdmin('reportedComments', compact('getReportedComments'));
+    }
+
+    public function allComments() {
+        $commentsManager = new CommentsManager();
+        $allComments = $commentsManager->getAllComments();
+        $this->renderAdmin('allComments', compact('allComments'));
     }
 
     /**
@@ -84,6 +93,31 @@ class AdminController extends Controller {
             $this->renderAdmin('editPost', compact('editPost'));
         } else {
             throw new Exception('Impposible d\'éditer un chapitre qui n\'existe pas');
+        }
+    }
+
+    public function deleteComment() {
+        $commentsManager = new CommentsManager();
+        if (isset($_GET['commentid']) && $_GET['commentid'] > 0) {
+            $commentToDelete = $commentsManager->deleteComment($_GET['commentid']);
+            if (isset($_GET['reportpage'])) {
+                header('Location: ' . Router::getUrl('reportedComments'));
+            } else {
+                header('Location: ' . Router::getUrl('allComments'));
+            }
+
+        } else {
+            throw new Exception('Le commentaire n\'existe pas.');
+        }
+    }
+
+    public function removeReportedTag() {
+        $commentsManager = new CommentsManager();
+        if (isset($_GET['commentid']) && $_GET['commentid'] > 0) {
+            $commentToDelete = $commentsManager->removeReportedTag($_GET['commentid']);
+            header('Location: ' . Router::getUrl('reportedComments'));
+        } else {
+            throw new Exception('Le commentaire n\'existe pas.');
         }
     }
 

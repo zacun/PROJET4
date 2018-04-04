@@ -5,6 +5,7 @@ use projet4\core\Router;
     <section class="singlepost-post">
         <h2><?= $singlePost['title']; ?></h2>
         <div><?= $singlePost['content'] ?></div>
+        <p class="singlepost-post-date"><small>Ajouté le <?= $singlePost['date_fr'] ?></small></p>
     </section>
     <section class="singlepost-comments">
         <div class="comment-form">
@@ -28,8 +29,17 @@ use projet4\core\Router;
             <p>Les commentaires sont classés du plus récent au plus ancien.</p>
             <?php foreach ($commentsByPost as $comment): ?>
                 <div>
-                    <p><strong <?= $commentAdmin = $comment['user_id'] != null ? 'class="comment-admin"' : '' ?>><?= $comment['author']; ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
-                    <p><?= $comment['content']; ?></p>
+                    <p><strong <?= $commentAdmin = $comment['user_id'] != null ? 'class="comment-admin"' : '' ?>><?= htmlspecialchars($comment['author']); ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
+                    <p><?= htmlspecialchars($comment['content']); ?></p>
+                    <div class="report-comment">
+                        <?php
+                            if ($comment['reported'] == 1) {
+                                echo '<i><small>Commentaire signalé.</small></i>';
+                            } else {
+                                echo '<a href="' . Router::getUrl('reportComment') . '?postid=' . $_GET['id'] . '&amp;commentid=' . $comment['id'] . '" title="Signaler le commentaire"><i class="fas fa-flag"></i></a>';
+                            }
+                        ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
