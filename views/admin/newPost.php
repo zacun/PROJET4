@@ -6,7 +6,7 @@
             <input type="text" name="newPostName" id="newPostName" required>
         </p>
         <p><label for="newPostContent">Ecrivez votre chapitre :</label></p>
-        <textarea name="newPostContent" id="newPostContent" rows="20"></textarea>
+        <textarea name="newPostContent" id="newPostContent" rows="50"></textarea>
         <p><input type="submit" value="Ajouter le nouveau chapitre"></p>
     </form>
 </div>

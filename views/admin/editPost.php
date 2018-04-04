@@ -6,7 +6,7 @@
             <input type="text" name="editPostName" id="editPostName" value="<?= $editPost['title']; ?>" required>
         </p>
         <p><label for="editPostContent">Ecrivez votre chapitre :</label></p>
-        <textarea name="editPostContent" id="editPostContent" rows="20">
+        <textarea name="editPostContent" id="editPostContent" rows="50">
             <?= $editPost['content']; ?>
         </textarea>
         <p><input type="submit" value="Sauvegarder les modifications"></p>

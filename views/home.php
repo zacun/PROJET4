@@ -25,7 +25,7 @@ use projet4\core\Router;
                     <p><small><?= $lastPost['date_fr']; ?></small></p>
                 </div>
                 <div class="excerpt-content">
-                    <p><?= PagesController::getExcerpt($lastPost['content']); ?></p>
+                    <p><?= \projet4\core\Controller::getExcerpt($lastPost['content'], 150); ?></p>
                 </div>
                 <div class="excerpt-link-to-post">
                     <a href="<?= Router::getUrl('chapitre') . '?id=' . $lastPost['id']; ?>">Lire la suite</a>
