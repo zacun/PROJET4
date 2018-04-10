@@ -1,6 +1,7 @@
 <?php
 use projet4\core\Router;
 use projet4\core\Controller;
+$title = 'Tous les commentaires';
 ?>
 <div class="main-allcomments">
     <h2>Liste des commentaires</h2>

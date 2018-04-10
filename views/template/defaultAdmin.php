@@ -8,13 +8,6 @@ use projet4\core\Router;
     <link href="../../public/css/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>
-        tinymce.init({
-            selector:'textarea',
-            resize: 'both'
-        });
-    </script>
     <title><?= $title; ?></title>
 </head>
 

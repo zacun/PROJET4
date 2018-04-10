@@ -1,3 +1,6 @@
+<?php
+$title = 'Contact';
+?>
 <div class="main-contact">
     <h2>Formulaire de contact</h2>
     <p>

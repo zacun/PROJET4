@@ -1,6 +1,7 @@
 <?php
 use projet4\core\Router;
 use projet4\core\Controller;
+$title = 'Commentaires signalés';
 ?>
 <div class="main-reported">
     <h2>Liste des commentaires signalés</h2>
@@ -9,6 +10,7 @@ use projet4\core\Controller;
         <table>
             <thead>
             <tr>
+                <th>Nb signalements</th>
                 <th>Auteur</th>
                 <th>Contenu</th>
                 <th>Chapitre lié</th>
@@ -19,6 +21,7 @@ use projet4\core\Controller;
             <tbody>
             <?php foreach ($getReportedComments as $comment): ?>
                 <tr>
+                    <td><?= $comment['reported']; ?></td>
                     <td><?= $comment['author']; ?></td>
                     <td><?= Controller::getExcerpt($comment['content'], 100, false); ?></td>
                     <td><a href="<?= Router::getUrl('chapitre'); ?>?id=<?= $comment['linked_chapter']; ?>"><?= $comment['linked_title']; ?></a></td>

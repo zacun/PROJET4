@@ -1,5 +1,6 @@
 <?php
 use projet4\core\Router;
+$title = 'Tous les chapitres';
 ?>
 <div class="main-allposts">
     <h2>Liste des chapitres</h2>

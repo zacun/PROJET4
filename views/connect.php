@@ -1,3 +1,6 @@
+<?php
+$title = 'Connexion';
+?>
 <div class="main-connect">
     <h2>Connexion</h2>
     <p>Page de connexion pour les administrateurs.</p>

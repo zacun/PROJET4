@@ -8,7 +8,7 @@ use projet4\core\Router;
     <link href="../public/css/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <title><?= $title; ?></title>
+    <title><?= 'Jean F. | ' . $title; ?></title>
 </head>
 
 <body>
@@ -33,6 +33,7 @@ use projet4\core\Router;
             <a href="<?= Router::getUrl('accueil'); ?>"><i class="fas fa-home"></i> Accueil</a>
             <a href="<?= Router::getUrl('chapitres'); ?>"><i class="fas fa-book"></i> Tous les chapitres</a>
             <a href="<?= Router::getUrl('contact'); ?>"><i class="fas fa-envelope-square"></i> Me contacter</a>
+
         </nav>
         <main>
             <?= $content; ?>

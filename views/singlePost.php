@@ -1,5 +1,6 @@
 <?php
 use projet4\core\Router;
+$title = $singlePost['title'];
 ?>
 <div class="main-singlepost">
     <section class="singlepost-post">
@@ -29,16 +30,10 @@ use projet4\core\Router;
             <p>Les commentaires sont classés du plus récent au plus ancien.</p>
             <?php foreach ($commentsByPost as $comment): ?>
                 <div>
-                    <p><strong <?= $commentAdmin = $comment['user_id'] != null ? 'class="comment-admin"' : '' ?>><?= htmlspecialchars($comment['author']); ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
+                    <p><strong><?= htmlspecialchars($comment['author']); ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
                     <p><?= htmlspecialchars($comment['content']); ?></p>
                     <div class="report-comment">
-                        <?php
-                            if ($comment['reported'] == 1) {
-                                echo '<i><small>Commentaire signalé.</small></i>';
-                            } else {
-                                echo '<a href="' . Router::getUrl('reportComment') . '?postid=' . $_GET['id'] . '&amp;commentid=' . $comment['id'] . '" title="Signaler le commentaire"><i class="fas fa-flag"></i></a>';
-                            }
-                        ?>
+                        <a href="<?= Router::getUrl('reportComment') . '?postid=' . $_GET['id'] . '&amp;commentid=' . $comment['id'] ?>" title="Signaler le commentaire"><i class="fas fa-flag"></i></a>
                     </div>
                 </div>
             <?php endforeach; ?>

@@ -1,5 +1,6 @@
 <?php
 use \projet4\core\Router;
+$title = 'Administration';
 ?>
 <div class="main-admin">
     <h1>Page principale d'administration</h1>

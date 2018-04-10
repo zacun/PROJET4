@@ -1,3 +1,6 @@
+<?php
+$title = 'Nouveau chapitre';
+?>
 <div class="main-newpost">
     <form action="<?= \projet4\core\Router::getUrl('addNewPost') ?>" method="post">
         <h1>Nouveau chapitre</h1>
@@ -10,3 +13,11 @@
         <p><input type="submit" value="Ajouter le nouveau chapitre"></p>
     </form>
 </div>
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector:'textarea',
+        resize: 'both'
+    });
+</script>

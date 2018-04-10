@@ -1,3 +1,6 @@
+<?php
+$title = 'Editer le chapitre';
+?>
 <div class="main-editpost">
     <form action="<?= \projet4\core\Router::getUrl('updatePost'); ?>?postid=<?= $_GET['postid']; ?>" method="post">
         <h1>Edition du chapitre</h1>
@@ -12,3 +15,11 @@
         <p><input type="submit" value="Sauvegarder les modifications"></p>
     </form>
 </div>
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector:'textarea',
+        resize: 'both'
+    });
+</script>
