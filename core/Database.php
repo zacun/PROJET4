@@ -13,6 +13,10 @@ class Database {
 
     private static $_instance;
 
+    /**
+     * @return Database
+     * Singleton.
+     */
     public static function getInstance() {
         if (is_null(self::$_instance)) {
             self::$_instance = new Database('projet4');
@@ -27,6 +31,10 @@ class Database {
         $this->db_password = $db_password;
     }
 
+    /**
+     * @return PDO
+     * Authentification to db with PDO
+     */
     public function getPDO() {
         if (is_null($this->pdo)) {
             $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name, $this->db_user, $this->db_password);

@@ -1,6 +1,10 @@
 <?php
 namespace projet4\core;
 
+/**
+ * Class Autoloader
+ * Simple Autoloader.
+ */
 class Autoloader {
 
     static function register() {
@@ -8,10 +12,10 @@ class Autoloader {
     }
 
     static function autoload($class_name) {
-        if (strpos($class_name, __NAMESPACE__ . '\\') === 0) {
-            $class_name = str_replace(__NAMESPACE__ . '\\', '', $class_name);
+        if (strpos($class_name, 'projet4\\') === 0) {
+            $class_name = str_replace('projet4\\', '', $class_name);
             $class_name = str_replace('\\', '/', $class_name);
-            require_once __DIR__ . '/' . $class_name . '.php';
+            require_once  __DIR__ . '/../' . $class_name . '.php';
         }
     }
 

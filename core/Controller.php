@@ -5,12 +5,16 @@ class Controller {
 
     protected $viewPath = '../views/';
     protected $template = 'default';
-    protected $title = 'F. Jean';
 
+    /**
+     * @param string $view
+     * @param array $variables
+     * render the right view with all needed variables.
+     */
     public function render(string $view, $variables = []) {
-        ob_start();
         extract($variables);
-        $title = $this->getTitle($view);
+        ob_start();
+        $title = '';
         require($this->viewPath . $view .'.php');
         $content = ob_get_clean();
         require($this->viewPath . 'template/' . $this->template . '.php');
@@ -19,18 +23,18 @@ class Controller {
     public function renderAdmin(string $view, $variables = []) {
         ob_start();
         extract($variables);
-        $title = $this->getTitle($view);
         require($this->viewPath . 'admin/' . $view .'.php');
         $content = ob_get_clean();
         require($this->viewPath . 'template/' . $this->template . 'Admin' . '.php');
     }
 
-
-    public function getTitle(string $view) {
-        $title = $this->title . ' | ' . ucfirst(str_replace('admin/', '', $view));
-        return $title;
-    }
-
+    /**
+     * @param string $excerpt
+     * @param int $length
+     * @param bool $dot
+     * @return bool|string
+     * Make an excerpt from a text (comment, post, ...)
+     */
     public static function getExcerpt(string $excerpt, int $length, bool $dot = true) {
         if ($dot == false) {
             return substr($excerpt, 0, $length);

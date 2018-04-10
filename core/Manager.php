@@ -17,6 +17,7 @@ class Manager {
      * @param $class_name
      * @param bool $fetchOnlyOne
      * @return array|mixed
+     * Simple query request.
      */
     public function query($SqlStatement) {
         $req = $this->dbConnect()->query($SqlStatement);
@@ -33,18 +34,16 @@ class Manager {
      */
     public function prepare($SqlStatement, $attributes, $fetch = true, $needOnlyOne = false) {
         $req = $this->dbConnect()->prepare($SqlStatement);
+        $newContent = $req->execute($attributes);
         if ($fetch) {
-            $req->execute($attributes);
             if ($needOnlyOne) {
                 $data = $req->fetch();
             } else {
                 $data = $req->fetchAll();
             }
             return $data;
-        } else {
-            $newContent = $req->execute($attributes);
-            return $newContent;
         }
+        return $newContent;
     }
 
 }
