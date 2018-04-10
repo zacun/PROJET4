@@ -1,10 +1,14 @@
 <?php
 
+// namespace projet4\src\controller;
+
 require_once '../src/model/PostsManager.php';
 require_once '../src/model/CommentsManager.php';
 
 use projet4\core\Controller;
 use projet4\core\Router;
+use projet4\src\manager\PostsManager;
+use projet4\src\manager\CommentsManager;
 
 class AdminController extends Controller {
 
@@ -14,7 +18,7 @@ class AdminController extends Controller {
     public function admin() {
         $postsManager = new PostsManager();
         $allPosts = $postsManager->getAllPosts();
-        $this->renderAdmin('admin', compact('allPosts'));
+        $this->render('admin/admin', compact('allPosts'));
     }
 
     /**
@@ -23,9 +27,9 @@ class AdminController extends Controller {
     public function addNewPost() {
         $postsManager = new PostsManager();
         if (empty($_POST['newPostName']) && empty($_POST['newPostContent'])) {
-            throw new Exception('Impossible d\'ajouter le chapitre : informations manquantes');
+            throw new \Exception('Impossible d\'ajouter le chapitre : informations manquantes');
         }
-        $newPost = $postsManager->addNewPost($_POST['newPostName'], $_POST['newPostContent']);
+        $postsManager->addNewPost($_POST['newPostName'], $_POST['newPostContent']);
         header('Location: ' . Router::getUrl('admin'));
     }
 
@@ -35,12 +39,12 @@ class AdminController extends Controller {
     public function updatePost() {
         $postManager = new PostsManager();
         if (!isset($_GET['postid']) && $_GET['postid'] <= 0) {
-            throw new Exception('Ce chapitre n\'existe pas');
+            throw new \Exception('Ce chapitre n\'existe pas');
         }
         if (empty($_POST['editPostName']) && empty($_POST['editPostContent'])) {
-                throw new Exception('Des champs sont vides.');
+                throw new \Exception('Des champs sont vides.');
         }
-        $editedPost = $postManager->updatePost(
+        $postManager->updatePost(
             $_POST['editPostName'],
             $_POST['editPostContent'],
             $_GET['postid']
@@ -54,9 +58,9 @@ class AdminController extends Controller {
     public function deletePost() {
         $postsManager = new PostsManager();
         if (!isset($_GET['postid']) && $_GET['postid'] <= 0) {
-            throw new Exception('Le chapitre n\'existe pas.');
+            throw new \Exception('Le chapitre n\'existe pas.');
         }
-        $postToDelete = $postsManager->deletePost(htmlspecialchars($_GET['postid']));
+        $postsManager->deletePost(htmlspecialchars($_GET['postid']));
         header('Location: ' . Router::getUrl('admin'));
     }
 
@@ -66,7 +70,7 @@ class AdminController extends Controller {
     public function reportedComments() {
         $commentsManager = new CommentsManager();
         $getReportedComments = $commentsManager->getReportedComments();
-        $this->renderAdmin('reportedComments', compact('getReportedComments'));
+        $this->render('admin/reportedComments', compact('getReportedComments'));
     }
 
     /**
@@ -75,14 +79,14 @@ class AdminController extends Controller {
     public function allComments() {
         $commentsManager = new CommentsManager();
         $allComments = $commentsManager->getAllComments();
-        $this->renderAdmin('allComments', compact('allComments'));
+        $this->render('admin/allComments', compact('allComments'));
     }
 
     /**
      * Go to newPost page
      */
     public function newPost() {
-        $this->renderAdmin('newPost');
+        $this->render('admin/newPost');
     }
 
     /**
@@ -91,10 +95,10 @@ class AdminController extends Controller {
     public function editPost() {
         $postsManager = new PostsManager();
         if (!isset($_GET['postid']) && $_GET['postid'] <= 0) {
-            throw new Exception('Impposible d\'éditer un chapitre qui n\'existe pas');
+            throw new \Exception('Impposible d\'éditer un chapitre qui n\'existe pas');
         }
         $editPost = $postsManager->getOnePost(htmlspecialchars($_GET['postid']));
-        $this->renderAdmin('editPost', compact('editPost'));
+        $this->render('admin/editPost', compact('editPost'));
     }
 
     /**
@@ -103,9 +107,9 @@ class AdminController extends Controller {
     public function deleteComment() {
         $commentsManager = new CommentsManager();
         if (!isset($_GET['commentid']) && $_GET['commentid'] <= 0) {
-            throw new Exception('Le commentaire n\'existe pas.');
+            throw new \Exception('Le commentaire n\'existe pas.');
         }
-        $commentToDelete = $commentsManager->deleteComment($_GET['commentid']);
+        $commentsManager->deleteComment($_GET['commentid']);
         if (isset($_GET['reportpage'])) {
             header('Location: ' . Router::getUrl('reportedComments'));
         } else {
@@ -119,9 +123,9 @@ class AdminController extends Controller {
     public function removeReportedTag() {
         $commentsManager = new CommentsManager();
         if (!isset($_GET['commentid']) && $_GET['commentid'] <= 0) {;
-            throw new Exception('Le commentaire n\'existe pas.');
+            throw new \Exception('Le commentaire n\'existe pas.');
         }
-        $commentToDelete = $commentsManager->removeReportedTag($_GET['commentid']);
+        $commentsManager->removeReportedTag($_GET['commentid']);
         header('Location: ' . Router::getUrl('reportedComments'));
     }
 

@@ -1,8 +1,9 @@
 <?php
 $title = 'Editer le chapitre';
+use \projet4\core\Router;
 ?>
 <div class="main-editpost">
-    <form action="<?= \projet4\core\Router::getUrl('updatePost'); ?>?postid=<?= $_GET['postid']; ?>" method="post">
+    <form action="<?= Router::getUrl('updatePost'); ?>?postid=<?= $_GET['postid']; ?>" method="post">
         <h1>Edition du chapitre</h1>
         <p>
             <label for="editPostName">Titre du chapitre :</label><br>

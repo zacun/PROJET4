@@ -1,8 +1,13 @@
 <?php
 
+// namespace projet4\src\controller;
+
 require_once '../src/model/PostsManager.php';
 require_once '../src/model/CommentsManager.php';
+
 use projet4\core\Controller;
+use projet4\src\manager\PostsManager;
+use projet4\src\manager\CommentsManager;
 
 class PagesController extends Controller{
 
@@ -12,7 +17,7 @@ class PagesController extends Controller{
     public function home() {
         $postManager = new PostsManager();
         $lastAddedPosts = $postManager->lastAddedPosts();
-        $this->render('home', compact('lastAddedPosts'));
+        $this->render('public/home', compact('lastAddedPosts'));
     }
 
     /**
@@ -21,7 +26,7 @@ class PagesController extends Controller{
     public function allPosts() {
         $postsManager = new PostsManager();
         $allPosts = $postsManager->getAllPosts();
-        $this->render('allPosts', compact('allPosts'));
+        $this->render('public/allPosts', compact('allPosts'));
     }
 
     /**
@@ -31,11 +36,11 @@ class PagesController extends Controller{
         $postsManager = new PostsManager();
         $commentsManager = new CommentsManager();
         if (!isset($_GET['id']) || $_GET['id'] <= 0) {
-            throw new Exception('Ce chapitre n\'existe pas.');
+            throw new \Exception('Ce chapitre n\'existe pas.');
         }
         $singlePost = $postsManager->getOnePost(htmlspecialchars($_GET['id']));
         $commentsByPost = $commentsManager->getCommentsByPost(htmlspecialchars($_GET['id']));
-        $this->render('singlePost', compact('singlePost', 'commentsByPost'));
+        $this->render('public/singlePost', compact('singlePost', 'commentsByPost'));
     }
 
     /**
@@ -44,12 +49,12 @@ class PagesController extends Controller{
     public function newComment() {
         $commentsManager = new CommentsManager();
         if (!isset($_GET['postid']) && $_GET['postid'] <= 0) {
-            throw new Exception('Ce chapitre n\'existe pas.');
+            throw new \Exception('Ce chapitre n\'existe pas.');
         }
         if (empty($_POST['comment-author']) && empty($_POST['comment-content'])) {
-            throw new Exception('Vous n\'avez pas rempli tous les champs.');
+            throw new \Exception('Vous n\'avez pas rempli tous les champs.');
         }
-        $newComment = $commentsManager->addComment(
+        $commentsManager->addComment(
             htmlspecialchars($_GET['postid']),
             htmlspecialchars(ucfirst($_POST['comment-author'])),
             htmlspecialchars($_POST['comment-content'])
@@ -63,18 +68,18 @@ class PagesController extends Controller{
     public function reportComment() {
         $commentsManager = new CommentsManager();
         if (!isset($_GET['commentid']) && $_GET['commentid'] <= 0) {
-            throw new Exception('Le commentaire n\'existe pas');
+            throw new \Exception('Le commentaire n\'existe pas');
         }
-        $reportComment = $commentsManager->reportComment(htmlspecialchars($_GET['commentid']));
+        $commentsManager->reportComment(htmlspecialchars($_GET['commentid']));
         header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
     }
 
     public function contact() {
-        $this->render('contact');
+        $this->render('public/contact');
     }
 
     public function connect() {
-        $this->render('connect');
+        $this->render('public/connect');
     }
 
 }
