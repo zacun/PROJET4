@@ -29,10 +29,15 @@ class Router {
             'path' => '/connexion',
             'run' => 'PagesController@connect'
         ],
+        // action : connect as admin
+        'loginAdmin' => [
+            'path' => '/login',
+            'run' => 'AuthController@loginAdmin'
+        ],
         // action : disconnect
-        'deconnexion' => [
-            'path' => '/deconnexion',
-            'run' => 'PagesController@deconnect'
+        'logout' => [
+            'path' => '/logout',
+            'run' => 'AuthController@logout'
         ],
         // action : add a comment on a single post page into db
         'addComment' => [

@@ -1,10 +1,11 @@
 <?php
 $title = 'Connexion';
+use projet4\core\Router;
 ?>
 <div class="main-connect">
     <h2>Connexion</h2>
     <p>Page de connexion pour les administrateurs.</p>
-    <form action="" method="post">
+    <form action="<?= Router::getUrl('loginAdmin'); ?>" method="post">
         <p>
             <label for="pseudo">Pseudonyme :</label><br>
             <input type="text" name="pseudo" id="pseudo" />

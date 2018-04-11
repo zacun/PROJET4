@@ -4,6 +4,7 @@
 
 require_once '../src/model/PostsManager.php';
 require_once '../src/model/CommentsManager.php';
+require_once '../src/controller/AuthController.php';
 
 use projet4\core\Controller;
 use projet4\core\Router;
@@ -11,6 +12,17 @@ use projet4\src\manager\PostsManager;
 use projet4\src\manager\CommentsManager;
 
 class AdminController extends Controller {
+
+
+    /**
+     * AdminController constructor.
+     * With this, all following functions will only work if you're logged as an admin.
+     */
+    public function __construct(){
+        if (!AuthController::loggedAdmin()) {
+            throw new Exception('Accès interdit.');
+        }
+    }
 
     /**
      * Main admin page

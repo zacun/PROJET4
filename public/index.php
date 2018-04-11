@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 define('BASE_URL', '/projet4/public');
 

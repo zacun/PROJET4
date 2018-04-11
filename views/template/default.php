@@ -1,4 +1,5 @@
 <?php
+require_once '../src/controller/AuthController.php';
 use projet4\core\Router;
 ?>
 <!DOCTYPE html>
@@ -33,14 +34,24 @@ use projet4\core\Router;
             <a href="<?= Router::getUrl('accueil'); ?>"><i class="fas fa-home"></i> Accueil</a>
             <a href="<?= Router::getUrl('chapitres'); ?>"><i class="fas fa-book"></i> Tous les chapitres</a>
             <a href="<?= Router::getUrl('contact'); ?>"><i class="fas fa-envelope-square"></i> Me contacter</a>
-
+            <?php
+            if (AuthController::loggedAdmin()) {
+                echo '<a href="' . Router::getUrl('admin') . '"><i class="fas fa-cogs"></i> Administration</a>';
+            }
+            ?>
         </nav>
         <main>
             <?= $content; ?>
         </main>
         <footer>
             <div class="copyright">© 2018 Jean Forteroche</div>
-            <div class="connexion"><small><a href="<?= Router::getUrl('connexion'); ?>"><i class="fas fa-sign-in-alt"></i> Connexion</a></small></div>
+            <?php
+            if (AuthController::loggedAdmin()) {
+                echo '<div class="connexion"><small><a href="' . Router::getUrl('logout') . '"><i class="fas fa-sign-out-alt"></i> Deconnexion</a></small></div>';
+            } else {
+                echo '<div class="connexion"><small><a href="' . Router::getUrl('connexion') . '"><i class="fas fa-sign-in-alt"></i> Connexion</a></small></div>';
+            }
+            ?>
         </footer>
     </div>
 </body>
