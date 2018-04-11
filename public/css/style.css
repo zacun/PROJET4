@@ -235,6 +235,10 @@ footer {
     text-decoration: none;
     color: inherit;
 }
+.flash {
+    text-align: center;
+    color: coral;
+}
 /*
 *
 **** main-contact

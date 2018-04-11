@@ -6,7 +6,8 @@ use projet4\core\Router;
 <html lang="fr_FR">
 <head>
     <meta charset="utf-8" />
-    <link href="../public/css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <title><?= 'Jean F. | ' . $title; ?></title>
@@ -34,11 +35,7 @@ use projet4\core\Router;
             <a href="<?= Router::getUrl('accueil'); ?>"><i class="fas fa-home"></i> Accueil</a>
             <a href="<?= Router::getUrl('chapitres'); ?>"><i class="fas fa-book"></i> Tous les chapitres</a>
             <a href="<?= Router::getUrl('contact'); ?>"><i class="fas fa-envelope-square"></i> Me contacter</a>
-            <?php
-            if (AuthController::loggedAdmin()) {
-                echo '<a href="' . Router::getUrl('admin') . '"><i class="fas fa-cogs"></i> Administration</a>';
-            }
-            ?>
+            <?= $adminitration = AuthController::loggedAdmin() ? '<a href="' . Router::getUrl('admin') . '"><i class="fas fa-cogs"></i> Administration</a>' : '' ?>
         </nav>
         <main>
             <?= $content; ?>
@@ -56,3 +53,5 @@ use projet4\core\Router;
     </div>
 </body>
 </html>
+<?php
+unset($_SESSION['flash']);

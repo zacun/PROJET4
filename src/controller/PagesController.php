@@ -71,6 +71,7 @@ class PagesController extends Controller{
             throw new \Exception('Le commentaire n\'existe pas');
         }
         $commentsManager->reportComment(htmlspecialchars($_GET['commentid']));
+        $_SESSION['flash'] = '<p class="flash">Le commentaire a bien été signalé</p>';
         header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
     }
 

@@ -28,6 +28,7 @@ $title = $singlePost['title'];
         <div class="comments-container">
             <h3>Liste des commentaires</h3>
             <p>Les commentaires sont classés du plus récent au plus ancien.</p>
+            <?= $flash = isset($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>
             <?php foreach ($commentsByPost as $comment): ?>
                 <div>
                     <p><strong><?= htmlspecialchars($comment['author']); ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>
