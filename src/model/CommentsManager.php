@@ -1,4 +1,5 @@
 <?php
+namespace projet4\src\manager;
 
 use projet4\core\Manager;
 
