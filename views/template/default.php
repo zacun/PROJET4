@@ -6,8 +6,8 @@ use projet4\core\Router;
 <html lang="fr_FR">
 <head>
     <meta charset="utf-8" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="public/css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="public/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <title><?= 'Jean F. | ' . $title; ?></title>
@@ -16,7 +16,7 @@ use projet4\core\Router;
 <body>
     <header>
         <h1 class="header-name">Jean Forteroche</h1>
-        <img class="header-photo" src="../public/images/portrait.png" alt="Photo de profil"/>
+        <img class="header-photo" src="public/images/portrait.png" alt="Photo de profil"/>
         <div class="header-biography">
             <p>Rêveur, voyageur et créatif depuis mon plus jeune âge, il était évident que je devienne écrivain afin de conter mes histoires et voyages.</p>
             <p>

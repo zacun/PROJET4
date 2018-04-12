@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-define('BASE_URL', '/projet4/public');
+define('BASE_URL', '/PROJET4');
 
 use projet4\core\Autoloader;
 use projet4\core\Router;
