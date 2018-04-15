@@ -8,7 +8,7 @@ $title = 'Tous les chapitres';
     <div class="posts-container">
         <?php foreach ($allPosts as $post): ?>
             <div class="post">
-                <div class="post-title"><p><?= $post['title']; ?></p></div>
+                <div class="post-title"><p><?= htmlspecialchars($post['title']); ?></p></div>
                 <div class="post-infos">
                     <div class="post-date"><small>Ajouté le<br> <?= $post['date_fr']; ?></small></div>
                     <div class="post-read"><a href="<?= Router::getUrl('chapitre') . '?id=' . $post['id'] ?>">Lire le chapitre</a></div>
