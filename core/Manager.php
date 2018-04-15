@@ -46,4 +46,19 @@ class Manager {
         return $newContent;
     }
 
+    /**
+     * @param $table
+     * @param $id
+     * @return array
+     * This function is used to find if a comment, post, etc exist or not.
+     * If $data is empty then the controller will make an alert message.
+     */
+    public function exist($table, $id) {
+        $SqlStatement = 'SELECT * FROM ' . $table . ' WHERE id = ?';
+        $req = $this->dbConnect()->prepare($SqlStatement);
+        $req->execute(array($id));
+        $data = $req->fetchAll();
+        return $data;
+    }
+
 }
