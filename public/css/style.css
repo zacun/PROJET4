@@ -23,6 +23,20 @@ body {
     color: #EEF0F3;
     text-decoration: none;
 }
+.alert {
+    margin: 1rem 1rem 0 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+.error {
+    background-color: #f77669;
+}
+.success {
+    background-color: #9cd845;
+}
 /*
 *
 **** Header
@@ -225,19 +239,12 @@ footer {
     border-top: 1px solid #4a6a77;
     padding-top: 0.5rem;
 }
-.comment-admin {
-    color: #f77669;
-}
 .report-comment {
     text-align: right;
 }
 .report-comment a {
     text-decoration: none;
     color: inherit;
-}
-.flash {
-    text-align: center;
-    color: coral;
 }
 /*
 *

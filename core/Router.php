@@ -1,6 +1,8 @@
 <?php
 namespace projet4\core;
 
+use projet4\core\Alert;
+
 class Router {
 
     private static $routes = [
@@ -46,37 +48,37 @@ class Router {
         ],
         // page : main admin interface
         'admin' => [
-            'path' => '/admin',
+            'path' => '/admin/',
             'run' => 'AdminController@admin'
         ],
         // page : new post
         'newPost' => [
-            'path' => '/admin-newPost',
+            'path' => '/admin/newPost',
             'run' => 'AdminController@newPost'
         ],
         // action : add a new post into db
         'addNewPost' => [
-            'path' => '/admin-addNewPost',
+            'path' => '/admin/addNewPost',
             'run' => 'AdminController@addNewPost'
         ],
         // page : edit post
         'editPost' => [
-            'path' => '/admin-editPost',
+            'path' => '/admin/editPost',
             'run' => 'AdminController@editPost'
         ],
         // action : update a post into bd
         'updatePost' => [
-            'path' => '/admin-updatePost',
+            'path' => '/admin/updatePost',
             'run' => 'AdminController@updatePost'
         ],
         // action : delete a post
         'deletePost' => [
-            'path' => '/admin-deletePost',
+            'path' => '/admin/deletePost',
             'run' => 'AdminController@deletePost'
         ],
         // page : reported comments page
         'reportedComments' => [
-            'path' => '/admin-reportedComments',
+            'path' => '/admin/reportedComments',
             'run' => 'AdminController@reportedComments'
         ],
         // action : report a comment to admin
@@ -86,17 +88,17 @@ class Router {
         ],
         // action : delete a comment
         'deleteComment' => [
-            'path' => '/admin-deleteComment',
+            'path' => '/admin/deleteComment',
             'run' => 'AdminController@deleteComment'
         ],
         // action : remove reported tag of a comment
         'removeReportedTag' => [
-            'path' => '/admin-removeReportedTag',
+            'path' => '/admin/removeReportedTag',
             'run' => 'AdminController@removeReportedTag'
         ],
         // page : shows all comments
         'allComments' => [
-            'path' => '/admin-allComments',
+            'path' => '/admin/allComments',
             'run' => 'AdminController@allComments'
         ]
     ];
@@ -126,11 +128,13 @@ class Router {
             }
         }
         if (!isset($controllerAndMethod)) {
-            throw new \Exception('La route n\'a pas été trouvée');
+            Alert::setAlert('L\'adresse demandée n\'existe pas.', 'error');
+            header('Location: ' . BASE_URL . '/');
+            exit();
         }
         $controller = $controllerAndMethod[0];
         $method = $controllerAndMethod[1];
-        require_once '../src/controller/' . $controller . '.php';
+        $controller = 'projet4\src\controller\\' . $controller;
         $controllerClass = new $controller;
         $controllerClass->$method();
     }

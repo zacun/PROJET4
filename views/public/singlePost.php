@@ -5,7 +5,7 @@ $title = $singlePost['title'];
 <div class="main-singlepost">
     <section class="singlepost-post">
         <h2><?= $singlePost['title']; ?></h2>
-        <div><?= $singlePost['content'] ?></div>
+        <div><?= $singlePost['content']; ?></div>
         <p class="singlepost-post-date"><small>Ajouté le <?= $singlePost['date_fr'] ?></small></p>
     </section>
     <section class="singlepost-comments">
@@ -28,7 +28,6 @@ $title = $singlePost['title'];
         <div class="comments-container">
             <h3>Liste des commentaires</h3>
             <p>Les commentaires sont classés du plus récent au plus ancien.</p>
-            <?= $flash = isset($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>
             <?php foreach ($commentsByPost as $comment): ?>
                 <div>
                     <p><strong><?= htmlspecialchars($comment['author']); ?></strong>, <small>le <?= $comment['date_fr']; ?></small></p>

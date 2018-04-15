@@ -1,13 +1,11 @@
 <?php
-
-// namespace projet4\src\controller;
-
-require_once '../src/model/PostsManager.php';
-require_once '../src/model/CommentsManager.php';
+namespace projet4\src\controller;
 
 use projet4\core\Controller;
-use projet4\src\manager\PostsManager;
-use projet4\src\manager\CommentsManager;
+use projet4\core\Alert;
+use projet4\core\Router;
+use projet4\src\model\PostsManager;
+use projet4\src\model\CommentsManager;
 
 class PagesController extends Controller{
 
@@ -30,13 +28,30 @@ class PagesController extends Controller{
     }
 
     /**
+     * Contact page
+     */
+    public function contact() {
+        $this->render('public/contact');
+    }
+
+    /**
+     * Connect page
+     */
+    public function connect() {
+        $this->render('public/connect');
+    }
+
+    /**
      * Display a chosen post with the associated comments
      */
     public function singlePost() {
         $postsManager = new PostsManager();
         $commentsManager = new CommentsManager();
-        if (!isset($_GET['id']) || $_GET['id'] <= 0) {
-            throw new \Exception('Ce chapitre n\'existe pas.');
+        $postExist = $postsManager->exist('posts', $_GET['id']);
+        if (empty($postExist)) {
+            Alert::setAlert('Le chapitre n\'existe pas.', 'error');
+            header('Location: ' . Router::getUrl('chapitres'));
+            exit();
         }
         $singlePost = $postsManager->getOnePost(htmlspecialchars($_GET['id']));
         $commentsByPost = $commentsManager->getCommentsByPost(htmlspecialchars($_GET['id']));
@@ -48,18 +63,24 @@ class PagesController extends Controller{
      */
     public function newComment() {
         $commentsManager = new CommentsManager();
-        if (!isset($_GET['postid']) && $_GET['postid'] <= 0) {
-            throw new \Exception('Ce chapitre n\'existe pas.');
+        $postExist = $commentsManager->exist('posts', $_GET['postid']);
+        if (empty($postExist)) {
+            Alert::setAlert('Le chapitre n\'existe pas.', 'error');
+            header('Location: ' . Router::getUrl('chapitres'));
+            exit();
         }
-        if (empty($_POST['comment-author']) && empty($_POST['comment-content'])) {
-            throw new \Exception('Vous n\'avez pas rempli tous les champs.');
+        if (empty(trim($_POST['comment-author'])) || empty(trim($_POST['comment-content']))) {
+            Alert::setAlert('Tous les champs ne sont pas remplis.', 'error');
+            header('Location: ' . Router::getUrl('chapitre') . '?id=' . $_GET['postid']);
+            exit();
         }
         $commentsManager->addComment(
             htmlspecialchars($_GET['postid']),
             htmlspecialchars(ucfirst($_POST['comment-author'])),
             htmlspecialchars($_POST['comment-content'])
         );
-        header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
+        Alert::setAlert('Le commentaire a bien été posté.', 'success');
+        header('Location: ' . Router::getUrl('chapitre') . '?id=' . $_GET['postid']);
     }
 
     /**
@@ -67,20 +88,15 @@ class PagesController extends Controller{
      */
     public function reportComment() {
         $commentsManager = new CommentsManager();
-        if (!isset($_GET['commentid']) && $_GET['commentid'] <= 0) {
-            throw new \Exception('Le commentaire n\'existe pas');
+        $commentExist = $commentsManager->exist('comments', $_GET['commentid']);
+        if (empty($commentExist)) {
+            Alert::setAlert('Le commentaire n\'existe pas.', 'error');
+            header('Location: ' . Router::getUrl('chapitre') . '?id=' . $_GET['postid']);
+            exit();
         }
         $commentsManager->reportComment(htmlspecialchars($_GET['commentid']));
-        $_SESSION['flash'] = '<p class="flash">Le commentaire a bien été signalé</p>';
-        header('Location: ' . BASE_URL . '/chapitre?id=' . $_GET['postid']);
-    }
-
-    public function contact() {
-        $this->render('public/contact');
-    }
-
-    public function connect() {
-        $this->render('public/connect');
+        Alert::setAlert('Le commentaire a bien été signalé.', 'success');
+        header('Location: ' . Router::getUrl('chapitre') . '?id=' . $_GET['postid']);
     }
 
 }
