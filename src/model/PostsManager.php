@@ -1,5 +1,5 @@
 <?php
-namespace projet4\src\manager;
+namespace projet4\src\model;
 use projet4\core\Manager;
 
 class PostsManager extends Manager {
