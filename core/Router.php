@@ -1,8 +1,6 @@
 <?php
 namespace projet4\core;
 
-use projet4\core\Alert;
-
 class Router {
 
     private static $routes = [
@@ -15,6 +13,11 @@ class Router {
         'contact' => [
             'path' => '/contact',
             'run' => 'PagesController@contact'
+        ],
+        // action : get mail info to send a mail
+        'getMailInfos' => [
+            'path' => '/getMailInfos',
+            'run' => 'Contact@getMailInfos'
         ],
         // page : all posts
         'chapitres' => [
