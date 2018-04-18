@@ -7,6 +7,7 @@ use projet4\core\Auth;
 <html lang="fr_FR">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link href="<?= BASE_URL ?>/public/css/style.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="<?= BASE_URL ?>/public/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
@@ -17,14 +18,16 @@ use projet4\core\Auth;
 <body>
     <header>
         <h1 class="header-name">Jean Forteroche</h1>
-        <img class="header-photo" src="<?= BASE_URL ?>/public/images/portrait.png" alt="Photo de profil"/>
-        <div class="header-biography">
-            <p>Rêveur, voyageur et créatif depuis mon plus jeune âge, il était évident que je devienne écrivain afin de conter mes histoires et voyages.</p>
-            <p>
-                Retrouvez sur ce site, les chapitres de mon dernier livre :<br />
-                <span class="book-name"><i>&laquo; Billet simple pour l'Alaska</i> &raquo;,</span><br />
-                qui y seront ajoutés au fur et à mesure.
-            </p>
+        <div class="header-photo-bio">
+            <img class="header-photo" src="<?= BASE_URL ?>/public/images/portrait.png" alt="Photo de profil"/>
+            <div class="header-biography">
+                <p>Rêveur, voyageur et créatif depuis mon plus jeune âge, il était évident que je devienne écrivain afin de conter mes histoires et voyages.</p>
+                <p>
+                    Retrouvez sur ce site, les chapitres de mon dernier livre :<br />
+                    <span class="book-name"><i>&laquo; Billet simple pour l'Alaska</i> &raquo;,</span><br />
+                    qui y seront ajoutés au fur et à mesure.
+                </p>
+            </div>
         </div>
         <div class="header-social">
             <a href="https://twitter.com/"><i class="fab fa-twitter-square fa-3x"></i></a>
