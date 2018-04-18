@@ -4,105 +4,95 @@ namespace projet4\core;
 class Router {
 
     private static $routes = [
-        // page : home
+        /**************************/
+        /** Pages related routes **/
+        /**************************/
+        /***** Public Pages *****/
         'accueil' => [
             'path' => '/',
             'run' => 'PagesController@home'
         ],
-        // page : contact
         'contact' => [
             'path' => '/contact',
             'run' => 'PagesController@contact'
         ],
-        // action : get mail info to send a mail
-        'getMailInfos' => [
-            'path' => '/getMailInfos',
-            'run' => 'Contact@getMailInfos'
-        ],
-        // page : all posts
         'chapitres' => [
             'path' => '/chapitres',
             'run' => 'PagesController@allPosts'
         ],
-        // page : single post
         'chapitre' => [
             'path' => '/chapitre',
             'run' => 'PagesController@singlePost'
         ],
-        // page : connect
         'connexion' => [
             'path' => '/connexion',
             'run' => 'PagesController@connect'
         ],
-        // action : connect as admin
-        'loginAdmin' => [
-            'path' => '/login',
-            'run' => 'AuthController@loginAdmin'
-        ],
-        // action : disconnect
-        'logout' => [
-            'path' => '/logout',
-            'run' => 'AuthController@logout'
-        ],
-        // action : add a comment on a single post page into db
-        'addComment' => [
-            'path' => '/addComment',
-            'run' => 'PagesController@newComment'
-        ],
-        // page : main admin interface
+        /***** Admin Pages *****/
         'admin' => [
             'path' => '/admin/',
             'run' => 'AdminController@admin'
         ],
-        // page : new post
         'newPost' => [
             'path' => '/admin/newPost',
             'run' => 'AdminController@newPost'
         ],
-        // action : add a new post into db
-        'addNewPost' => [
-            'path' => '/admin/addNewPost',
-            'run' => 'AdminController@addNewPost'
-        ],
-        // page : edit post
         'editPost' => [
             'path' => '/admin/editPost',
             'run' => 'AdminController@editPost'
         ],
-        // action : update a post into bd
-        'updatePost' => [
-            'path' => '/admin/updatePost',
-            'run' => 'AdminController@updatePost'
-        ],
-        // action : delete a post
-        'deletePost' => [
-            'path' => '/admin/deletePost',
-            'run' => 'AdminController@deletePost'
-        ],
-        // page : reported comments page
         'reportedComments' => [
             'path' => '/admin/reportedComments',
             'run' => 'AdminController@reportedComments'
         ],
-        // action : report a comment to admin
+        'allComments' => [
+            'path' => '/admin/allComments',
+            'run' => 'AdminController@allComments'
+        ],
+        /****************************/
+        /** Actions related routes **/
+        /****************************/
+        /***** Public actions *****/
+        'getMailInfos' => [
+            'path' => '/contact',
+            'run' => 'PagesController@contact'
+        ],
+        'addComment' => [
+            'path' => '/addComment',
+            'run' => 'PagesController@newComment'
+        ],
+        'loginAdmin' => [
+            'path' => '/login',
+            'run' => 'AuthController@loginAdmin'
+        ],
+        /***** Admin actions *****/
+        'logout' => [
+            'path' => '/logout',
+            'run' => 'AuthController@logout'
+        ],
+        'addNewPost' => [
+            'path' => '/admin/addNewPost',
+            'run' => 'AdminController@addNewPost'
+        ],
+        'updatePost' => [
+            'path' => '/admin/updatePost',
+            'run' => 'AdminController@updatePost'
+        ],
+        'deletePost' => [
+            'path' => '/admin/deletePost',
+            'run' => 'AdminController@deletePost'
+        ],
         'reportComment' => [
             'path' => '/reportComment',
             'run' => 'PagesController@reportComment'
         ],
-        // action : delete a comment
         'deleteComment' => [
             'path' => '/admin/deleteComment',
             'run' => 'AdminController@deleteComment'
         ],
-        // action : remove reported tag of a comment
         'removeReportedTag' => [
             'path' => '/admin/removeReportedTag',
             'run' => 'AdminController@removeReportedTag'
-        ],
-        // page : shows all comments
-        'allComments' => [
-            'path' => '/admin/allComments',
-            'run' => 'AdminController@allComments'
         ]
     ];
 
