@@ -3,6 +3,7 @@ namespace projet4\src\controller;
 
 use projet4\core\Controller;
 use projet4\core\Alert;
+use projet4\core\Mail;
 use projet4\core\Router;
 use projet4\src\model\PostsManager;
 use projet4\src\model\CommentsManager;
@@ -31,7 +32,29 @@ class PagesController extends Controller{
      * Contact page
      */
     public function contact() {
-        $this->render('public/contact');
+        $name = '';
+        $mail = '';
+        $subject = '';
+        $message = '';
+        if (!empty($_POST)) {
+            $name = trim($_POST['name']);
+            $mail = trim($_POST['mail']);
+            $subject = trim($_POST['subject']);
+            $message = trim($_POST['message']);
+            if (empty($name) || empty($mail) || empty($subject) || empty($message)) {
+                Alert::setAlert('Tous les champs ne sont pas remplis.', 'error');
+            } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                Alert::setAlert('L\'adresse e-mail renseignée n\'est pas valide.', 'error');
+            } else {
+                $subject = strip_tags($subject);
+                $headers = 'FROM : ' . strip_tags($name) . ' - <' . strip_tags($mail) . '>';
+                $message = strip_tags($message);
+                $send = new Mail('batpaulin@gmail.com');
+                $send->newMail($subject, $message, $headers);
+                exit();
+            }
+        }
+        $this->render('public/contact', compact('name', 'mail', 'subject', 'message'));
     }
 
     /**
