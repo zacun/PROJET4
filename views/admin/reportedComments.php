@@ -5,7 +5,7 @@ $title = 'Commentaires signalés';
 ?>
 <div class="main-reported">
     <h2>Liste des commentaires signalés</h2>
-    <p>Les commentaires signalés sont classés du plus récent au plus ancien</p>
+    <p>Les commentaires signalés sont classés en fonction de leur nombre de signalements</p>
     <section>
         <table>
             <thead>
