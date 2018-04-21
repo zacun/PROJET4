@@ -21,8 +21,8 @@ $title = 'Tous les commentaires';
             <?php foreach ($allComments as $comment): ?>
                 <tr>
                     <td><?= $comment['date_fr']; ?></td>
-                    <td><?= $comment['author']; ?></td>
-                    <td><?= Controller::getExcerpt($comment['content'], 100, false); ?></td>
+                    <td><?= htmlspecialchars($comment['author']); ?></td>
+                    <td><?= Controller::getExcerpt(htmlspecialchars($comment['content']), 100, false); ?></td>
                     <td><a href="<?= Router::getUrl('chapitre'); ?>?id=<?= $comment['linked_chapter']; ?>"><?= $comment['linked_title']; ?></a></td>
                     <td><a href="<?= Router::getUrl('deleteComment'); ?>?commentid=<?= $comment['id']; ?>"><i class="fas fa-trash"></i></a></td>
                 </tr>

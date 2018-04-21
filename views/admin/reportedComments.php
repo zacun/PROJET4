@@ -22,8 +22,8 @@ $title = 'Commentaires signalés';
             <?php foreach ($getReportedComments as $comment): ?>
                 <tr>
                     <td><?= $comment['reported']; ?></td>
-                    <td><?= $comment['author']; ?></td>
-                    <td><?= Controller::getExcerpt($comment['content'], 100, false); ?></td>
+                    <td><?= htmlspecialchars($comment['author']); ?></td>
+                    <td><?= Controller::getExcerpt(htmlspecialchars($comment['content']), 100, false); ?></td>
                     <td><a href="<?= Router::getUrl('chapitre'); ?>?id=<?= $comment['linked_chapter']; ?>"><?= $comment['linked_title']; ?></a></td>
                     <td><a href="<?= Router::getUrl('removeReportedTag'); ?>?commentid=<?= $comment['id']; ?>"><i class="fas fa-times"></i></a></td>
                     <td><a href="<?= Router::getUrl('deleteComment'); ?>?commentid=<?= $comment['id']; ?>&reportpage=1"><i class="fas fa-trash"></i></a></td>
