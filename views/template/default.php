@@ -58,5 +58,3 @@ use projet4\core\Auth;
     </div>
 </body>
 </html>
-<?php
-unset($_SESSION['flash']);
